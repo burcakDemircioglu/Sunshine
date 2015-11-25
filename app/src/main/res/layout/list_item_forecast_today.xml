@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="7"
-        android:layout_marginLeft="60dp">
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp">
         <TextView
             android:id="@+id/list_item_date_textview"
             android:layout_width="match_parent"
@@ -35,7 +36,8 @@
             android:textColor="@color/white"
             android:fontFamily="sans-serif-light"
             android:textSize="36sp"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
@@ -43,7 +45,8 @@
         android:orientation="vertical"
         android:gravity="center_horizontal|bottom"
         android:layout_weight="5"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp">
 
         <ImageView
             android:id="@+id/list_item_icon"

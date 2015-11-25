@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -51,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="sans-serif-light"
                 android:textSize="48sp"
                 android:textColor="@color/grey_detail"/>
@@ -87,7 +89,8 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:layout_marginLeft="16dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp">
 
             <ImageView
                 android:id="@+id/detail_icon"
@@ -107,8 +110,8 @@
 
             <com.example.burcakdemircioglu.sunshine.app.CompassView
                 android:id="@+id/compass_view"
-                android:layout_width="100px"
-                android:layout_height="100px" />
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </LinearLayout>
