@@ -1,14 +1,16 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/com.example.burcakdemircioglu.sunshine.app">
 
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    <EditTextPreference
+    <com.example.burcakdemircioglu.sunshine.app.LocationEditTextPreference
         android:defaultValue="@string/pref_location_default"
         android:inputType="textCapWords"
         android:key="@string/pref_location_key"
         android:singleLine="true"
-        android:title="@string/pref_location_label" />
+        android:title="@string/pref_location_label"
+        android:minLength="3"/>
     <ListPreference
         android:defaultValue="@string/pref_units_metric"
         android:entries="@array/pref_units_options"
