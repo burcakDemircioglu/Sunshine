@@ -1,5 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android="http://schemas.android.com/apk/res/com.example.burcakdemircioglu.sunshine.app">
+    xmlns:custom="http://schemas.android.com/apk/res/com.example.burcakdemircioglu.sunshine.app">
 
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
@@ -10,7 +10,7 @@
         android:key="@string/pref_location_key"
         android:singleLine="true"
         android:title="@string/pref_location_label"
-        android:minLength="3"/>
+        custom:minLength="3"/>
     <ListPreference
         android:defaultValue="@string/pref_units_metric"
         android:entries="@array/pref_units_options"
