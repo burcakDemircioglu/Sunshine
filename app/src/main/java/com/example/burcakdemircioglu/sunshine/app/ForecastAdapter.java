@@ -108,7 +108,11 @@ public class ForecastAdapter extends CursorAdapter {
         viewHolder.dateView.setText(Utility.getFriendlyDayString(context, dateInMillis));
 
         // TODO Read weather forecast from cursor
-        String description=cursor.getString(ForecastFragment.COL_WEATHER_DESC);
+        //String description=cursor.getString(ForecastFragment.COL_WEATHER_DESC);
+        String description=Utility.getStringForWheatherCondition(context, weatherId);
+
+
+
         viewHolder.descriptionView.setText(description);
         viewHolder.iconView.setContentDescription(description);
         // Read user preference for metric or imperial temperature units
