@@ -3,11 +3,14 @@ package com.example.burcakdemircioglu.sunshine.app;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
@@ -88,18 +91,41 @@ public class ForecastAdapter extends CursorAdapter {
 
         // Read weather icon ID from cursor
         int weatherId = cursor.getInt(ForecastFragment.COL_WEATHER_CONDITION_ID);
+        int fallbackIconId;
         switch (viewType){
             case VIEW_TYPE_TODAY:{
-                viewHolder.iconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
-
+                //viewHolder.iconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
+                fallbackIconId=Utility.getArtResourceForWeatherCondition(weatherId);
                 break;
             }
-            case VIEW_TYPE_FUTURE_DAY:{
-                viewHolder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(weatherId));
-
+            default:{
+                //viewHolder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(weatherId));
+                fallbackIconId=Utility.getIconResourceForWeatherCondition(weatherId);
                 break;
             }
         }
+
+        Log.v("iconPack", Utility.getPreferredIconPack(context));
+        if(Utility.getPreferredIconPack(context).equals(context.getString(R.string.pref_icon_pack_grayscale))){
+            switch (viewType){
+                case VIEW_TYPE_TODAY:{
+                    viewHolder.iconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
+                    break;
+                }
+                default:{
+                    viewHolder.iconView.setImageResource(Utility.getIconResourceForWeatherCondition(weatherId));
+                    break;
+                }
+            }
+        }else{
+            Glide.with(mContext)
+                    .load(Utility.getArtUrlForWeatherCondition(mContext, weatherId))
+                    .error(fallbackIconId)
+                    .crossFade()
+                    .into(viewHolder.iconView);
+        }
+
+        Log.v("imageHeight", Integer.toString(viewHolder.iconView.getHeight()));
         // Use placeholder image for now
         //viewHolder.iconView.setImageResource(R.drawable.art_rain);
 
@@ -109,7 +135,7 @@ public class ForecastAdapter extends CursorAdapter {
 
         // TODO Read weather forecast from cursor
         //String description=cursor.getString(ForecastFragment.COL_WEATHER_DESC);
-        String description=Utility.getStringForWheatherCondition(context, weatherId);
+        String description=Utility.getStringForWeatherCondition(context, weatherId);
 
 
 

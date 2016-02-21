@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.burcakdemircioglu.sunshine.app.data.WeatherContract;
 
 
@@ -138,7 +139,14 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             boolean isMetric=Utility.isMetric(getActivity());
 
             int weatherId=data.getInt(COL_WEATHER_CONDITION_ID);
-            mIconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
+
+            //mIconView.setImageResource(Utility.getArtResourceForWeatherCondition(weatherId));
+
+            Glide.with(this)
+                    .load(Utility.getArtUrlForWeatherCondition(getActivity(), weatherId))
+                    .error(Utility.getArtResourceForWeatherCondition(weatherId))
+                    .into(mIconView);
+
 
             long date=data.getLong(COL_WEATHER_DATE);
             String friendlyDateText=Utility.getDayName(getActivity(), date);
@@ -156,7 +164,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             mLowTempView.setText(lowString);
             mLowTempView.setContentDescription(getString(R.string.a11y_low_temp, lowString));
 
-            String description=data.getString(COL_WEATHER_DESC);
+            String description=Utility.getStringForWeatherCondition(getActivity(), weatherId);
             mDescriptionView.setText(description);
             mDescriptionView.setContentDescription(getString(R.string.a11y_forecast, description));
 

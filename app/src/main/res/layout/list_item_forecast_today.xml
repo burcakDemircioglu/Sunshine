@@ -54,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:width="100dp"
-            android:height="100dp"/>
+            android:height="100dp"
+            android:adjustViewBounds="true"/>
 
         <TextView
             android:id="@+id/list_item_forecast_textview"

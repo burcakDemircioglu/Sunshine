@@ -15,7 +15,7 @@
     <!-- Default name for storing location status in SharedPreferences -->
     <string name="pref_location_status_key" translatable="false">loc-status</string>
 
-    <!-- Strings realted to units setting-->
+    <!-- Strings related to units setting-->
     <string name="pref_units_label">Temperature Units</string>
     <string name="pref_units_label_metric">Metric</string>
     <string name="pref_units_label_imperial">Imperial</string>
@@ -143,4 +143,22 @@
     <string name="condition_962">Hurricane</string>
 
     <string name="condition_unknown">Unknown (<xliff:g id="low">%1$s</xliff:g>)</string>
+
+    <!-- Format for retrieving art from an external source [CHAR LIMIT=NONE] -->
+    <string name="pref_icon_pack_url_color" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-xxhdpi/art_<xliff:g id="description">%s</xliff:g>.png</string>
+    <string name="pref_icon_pack_url_color_mini" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-mdpi/art_<xliff:g id="description">%s</xliff:g>.png</string>
+
+    <!-- <string name="pref_icon_pack_sunshine" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-xxhdpi/art_<xliff:g id="description">%s</xliff:g>.png</string> -->
+    <!-- <string name="pref_icon_pack_cute_dogs" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-mdpi/art_<xliff:g id="description">%s</xliff:g>.png</string> -->
+
+    <!-- icon pack preferences -->
+    <string name="pref_icon_pack_label">Icon Pack</string>
+    <string name="pref_icon_pack_label_color">Color</string>
+    <string name="pref_icon_pack_label_color_mini">Color mini</string>
+    <string name="pref_icon_pack_label_grayscale">Grayscale</string>
+    <string name="pref_icon_pack_color">color</string>
+    <string name="pref_icon_pack_color_mini">color_mini</string>
+    <string name="pref_icon_pack_grayscale">grayscale</string>
+    <string name="pref_icon_pack_key">icon_pack</string>
+    <string name="pref_icon_pack_default">grayscale</string>
 </resources>

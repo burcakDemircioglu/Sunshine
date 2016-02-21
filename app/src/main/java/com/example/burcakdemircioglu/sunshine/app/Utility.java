@@ -27,6 +27,7 @@ import com.example.burcakdemircioglu.sunshine.app.sync.SunshineSyncAdapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Utility {
     public static String getPreferredLocation(Context context) {
@@ -44,6 +45,27 @@ public class Utility {
 
     /**
      * @param c Context used to get the SharedPreferences
+     * @return preferred icon pack type as String
+     */
+    public static String getPreferredIconPack(Context c){
+        SharedPreferences  prefs =PreferenceManager.getDefaultSharedPreferences(c);
+        String iconPreference=prefs.getString(c.getString(R.string.pref_icon_pack_key), c.getString(R.string.pref_icon_pack_default));
+
+        if(iconPreference.equals(c.getString(R.string.pref_icon_pack_color))) {
+            return c.getString(R.string.pref_icon_pack_url_color);
+        }
+        else if(iconPreference.equals(c.getString(R.string.pref_icon_pack_color_mini))) {
+            return c.getString(R.string.pref_icon_pack_url_color_mini);
+        }
+        else {
+            return prefs.getString(c.getString(R.string.pref_icon_pack_key), c.getString(R.string.pref_icon_pack_default));
+        }
+    }
+
+
+
+    /**
+     * @param c Context used to get the SharedPreferences
      * @return the location status integer type
      */
     @SuppressWarnings("ResourceType")
@@ -53,6 +75,8 @@ public class Utility {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
         return sp.getInt(c.getString(R.string.pref_location_status_key), SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN);
     }
+
+
 
     /**
      * Resets the location status. (Sets it to SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN)
@@ -326,7 +350,44 @@ public class Utility {
         return -1;
     }
 
-    public static String getStringForWheatherCondition(Context context, int weatherId) {
+    /**
+     * Helper method to provide the art urls according to the weather condition id returned
+     * by the OpenWeatherMap call.
+     *
+     * @param context Context to use for retrieving the URL format
+     * @param weatherId from OpenWeatherMap API response
+     * @return url for the corresponding weather artwork. null if no relation is found.
+     */
+    public static String getArtUrlForWeatherCondition(Context context, int weatherId) {
+        // Based on weather code data found at:
+        // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
+
+        if (weatherId >= 200 && weatherId <= 232) {
+            return String.format(Locale.US, getPreferredIconPack(context), "storm");
+        } else if (weatherId >= 300 && weatherId <= 321) {
+            return String.format(Locale.US, getPreferredIconPack(context), "light_rain");
+        } else if (weatherId >= 500 && weatherId <= 504) {
+            return String.format(Locale.US, getPreferredIconPack(context), "rain");
+        } else if (weatherId == 511) {
+            return String.format(Locale.US, getPreferredIconPack(context), "snow");
+        } else if (weatherId >= 520 && weatherId <= 531) {
+            return String.format(Locale.US, getPreferredIconPack(context), "rain");
+        } else if (weatherId >= 600 && weatherId <= 622) {
+            return String.format(Locale.US, getPreferredIconPack(context), "snow");
+        } else if (weatherId >= 701 && weatherId <= 761) {
+            return String.format(Locale.US, getPreferredIconPack(context), "fog");
+        } else if (weatherId == 761 || weatherId == 781) {
+            return String.format(Locale.US, getPreferredIconPack(context), "storm");
+        } else if (weatherId == 800) {
+            return String.format(Locale.US, getPreferredIconPack(context), "clear");
+        } else if (weatherId == 801) {
+            return String.format(Locale.US, getPreferredIconPack(context), "light_clouds");
+        } else if (weatherId >= 802 && weatherId <= 804) {
+            return String.format(Locale.US, getPreferredIconPack(context), "clouds");
+        }
+        return null;
+    }
+    public static String getStringForWeatherCondition(Context context, int weatherId) {
         // Based on weather code data found at:
         // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
         int stringId;

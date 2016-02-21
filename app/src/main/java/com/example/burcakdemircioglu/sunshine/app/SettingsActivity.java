@@ -40,6 +40,7 @@ public class SettingsActivity extends PreferenceActivity
         addPreferencesFromResource(R.xml.pref_general);
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_icon_pack_key)));
         //bindPreferenceSummaryToValue(findPreference(getString(R.bool.pref_notification_key)));
 
     }
@@ -126,6 +127,8 @@ public class SettingsActivity extends PreferenceActivity
         }else if(key.equals(getString(R.string.pref_location_status_key))){
             Preference locationPreference=findPreference(getString(R.string.pref_location_key));
             bindPreferenceSummaryToValue(locationPreference);
+        }else if(key.equals(getString(R.string.pref_icon_pack_key))){
+            getContentResolver().notifyChange(WeatherContract.WeatherEntry.CONTENT_URI,null);
         }
     }
 
